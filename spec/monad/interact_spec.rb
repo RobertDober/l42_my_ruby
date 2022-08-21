@@ -20,7 +20,7 @@ RSpec.describe L42::Monad do
         expect($stderr)
           .to receive(:puts).with(output)
 
-        described_class.interact(&interactor)
+        described_class.interact(interactor)
       end
     end
 
@@ -35,7 +35,7 @@ RSpec.describe L42::Monad do
         expect($stdout)
           .to receive(:puts).with(output)
 
-        described_class.interact(&interactor)
+        described_class.interact(interactor)
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe L42::Monad do
           .not_to receive(:puts)
 
         expect {
-          described_class.interact(&interactor)
+          described_class.interact(interactor)
         }.to raise_error(described_class::ContractViolation)
       end
     end

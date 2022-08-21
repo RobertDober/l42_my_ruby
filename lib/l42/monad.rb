@@ -6,7 +6,7 @@ module L42
 
     class ContractViolation < RuntimeError; end
 
-    def interact(&interactor)
+    def interact(interactor)
       case interactor.($stdin.readlines(chomp: true))
       in [:stdout, output]
         $stdout.puts(output)
@@ -18,8 +18,8 @@ module L42
       end
     end
 
-    def functional_output(args, &transformer)
-      case transformer.(args)
+    def functional_output(transformer, *args)
+      case transformer.(*args)
       in [:stdout, output]
         $stdout.puts(output)
       in [:stderr, output]

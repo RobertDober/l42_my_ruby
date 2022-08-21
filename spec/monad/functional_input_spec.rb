@@ -15,7 +15,7 @@ RSpec.describe L42::Monad do
         expect($stderr)
           .to receive(:puts).with(output)
 
-        described_class.functional_output([], &transformer)
+        described_class.functional_output(transformer)
       end
     end
 
@@ -26,7 +26,7 @@ RSpec.describe L42::Monad do
         expect($stdout)
           .to receive(:puts).with(output)
 
-        described_class.functional_output([], &transformer)
+        described_class.functional_output(transformer)
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe L42::Monad do
           .not_to receive(:puts)
 
         expect {
-          described_class.functional_output([], &transformer)
+          described_class.functional_output(transformer)
         }.to raise_error(described_class::ContractViolation)
       end
     end

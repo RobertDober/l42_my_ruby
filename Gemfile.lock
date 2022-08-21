@@ -1,3 +1,9 @@
+PATH
+  remote: .
+  specs:
+    l42_my_ruby (0.1.0)
+      lab42_rgxargs (~> 0.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -12,6 +18,7 @@ GEM
     irb (1.4.1)
       reline (>= 0.3.0)
     json (2.6.2)
+    lab42_rgxargs (0.2.1)
     method_source (1.0.0)
     parallel (1.22.1)
     parser (3.1.2.1)
@@ -61,6 +68,7 @@ GEM
     simplecov-lcov (0.8.0)
     simplecov_json_formatter (0.1.4)
     speculate_about (1.0.2)
+    timecop (0.9.5)
     unicode-display_width (2.2.0)
     webrick (1.7.0)
     yard (0.9.28)
@@ -69,9 +77,11 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   debug
+  l42_my_ruby!
   pry-doc
   rspec (~> 3.11.0)
   rspec-core (~> 3.11.0)
@@ -79,6 +89,7 @@ DEPENDENCIES
   simplecov
   simplecov-lcov (~> 0.8.0)
   speculate_about (~> 1.0.2)
+  timecop (~> 0.9.5)
   zeitwerk (~> 2.6.0)
 
 BUNDLED WITH

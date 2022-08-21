@@ -15,9 +15,12 @@ Gem::Specification.new do |s|
   s.authors     = ["Robert Dober"]
   s.email       = 'robert.dober@gmail.com'
   s.files       = Dir.glob("lib/**/*.rb")
+  s.files      += Dir.glob("bin/**/*")
   s.files      += %w[LICENSE README.md]
   s.homepage    = "https://github.com/robertdober/l42_my_ruby"
   s.licenses    = %w[Apache-2.0]
 
   s.required_ruby_version = '>= 3.1.0'
+
+  s.add_dependency 'lab42_rgxargs', '~> 0.2.1'
 end
