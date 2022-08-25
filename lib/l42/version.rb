@@ -2,7 +2,7 @@
 
 module L42
   module Version
-    VERSION = '0.1.2'
+    VERSION = '0.1.3'
   end
 end
 # SPDX-License-Identifier: Apache-2.0

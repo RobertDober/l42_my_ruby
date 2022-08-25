@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.files       += Dir.glob("bin/**/*")
   s.files       += %w[LICENSE README.md]
   s.bindir       = 'bin'
-  s.executables += Dir.glob('bin/*').grep_v(%r{\.rb\z}).map { p File.basename(_1) }
+  s.executables += Dir.glob('bin/*').map { File.basename(_1) }
   s.homepage     = "https://github.com/robertdober/l42_my_ruby"
   s.licenses     = %w[Apache-2.0]
 

@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+require_relative '../lib/l42'
 
-ASDF_RUBY_VERSION=3.1.2 ruby $(realpath $0).rb $@
-
+L42::Monad.functional_output(L42::Interfaces::WithTs, *ARGV)
+# SPDX-License-Identifier: Apache-2.0

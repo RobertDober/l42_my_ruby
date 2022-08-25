@@ -29,6 +29,19 @@ module L42
               "a transformer needs to return a result of type `[:stderr|:stdout, anything]`, not #{x.inspect}"
       end
     end
+
+    def functional_input(transformer, *args)
+      case transformer.($stdin.readlines(chomp: true), *args)
+      in [:stdout, output]
+        output
+      in [:stderr, output]
+        $stderr.puts(output)
+        exit(-1)
+      in x
+        raise ContractViolation,
+              "a transformer needs to return a result of type `[:stderr|:stdout, anything]`, not #{x.inspect}"
+      end
+    end
   end
 end
 # SPDX-License-Identifier: Apache-2.0

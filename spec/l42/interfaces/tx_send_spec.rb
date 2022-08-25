@@ -11,9 +11,8 @@ RSpec.describe L42::Interfaces::TxSend, :frozen_time do
         "tmux send-keys -t #{dest} ''second' line' C-m",
         "tmux select-window -t #{dest}"
       ]
-      ARGV = [dest]
       expect(
-        described_class.(input)
+        described_class.(input, dest)
       ).to eq([:stdout, output])
     end
   end

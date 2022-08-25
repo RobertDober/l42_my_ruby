@@ -6,8 +6,7 @@ module L42
     module TxSend
       extend self
 
-      def call(lines)
-        Lab42::Rgxargs.new.parse(ARGV) => [OpenStruct, [dest], *]
+      def call(lines, dest)
         [
           :stdout,
           [*lines.map(&_send_to(dest)), "tmux select-window -t #{dest}"]
