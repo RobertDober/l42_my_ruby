@@ -1,46 +1,50 @@
 # frozen_string_literal: true
 
 RSpec.describe L42::Monad do
-  describe "interaction between args and stdout" do
-    let(:output) { double("output") }
+  describe "args and stdin produce result" do
+    let(:input) { (1..3).to_a.map(&:to_s) }
 
-    let(:transformer) do
-      ->(*){ result }
-    end
+    context "ok result" do
+      let(:transformer) { ->(lines, base) { [:stdout, lines.inject(base){ |b, l| b + l.to_i} ] } }
+      it "computes on input" do
+        expect($stdin)
+          .to receive(:readlines).with(chomp: true)
+          .and_return(input)
 
-    context "stderr" do
-      let(:result) { [:stderr, output] }
-
-      it "transforms args to stderr" do
-        expect($stderr)
-          .to receive(:puts).with(output)
-
-        described_class.functional_output(transformer)
+        expect(described_class.functional_input(transformer, 10)).to eq(16)
       end
     end
 
-    context "stdout" do
-      let(:result) { [:stdout, output] }
+    context "error result" do
+      let(:message) { random_string("error") }
+      let(:transformer) { ->(_) { [:stderr, message] }}
+      it "will exit" do
+        expect($stdin)
+          .to receive(:readlines).with(chomp: true)
+          .and_return(input)
 
-      it "transforms args to stdout" do
-        expect($stdout)
-          .to receive(:puts).with(output)
+        expect($stderr)
+          .to receive(:puts).with(message)
 
-        described_class.functional_output(transformer)
+        expect { described_class.functional_input(transformer) }
+          .to raise_error(SystemExit)
       end
     end
 
     context "bad result raises a ContractViolation" do
-      let(:result) { output }
-
+      let(:transformer) { ->(_) { 42 } }
       it "transforms nothing" do
+        expect($stdin)
+          .to receive(:readlines).with(chomp: true)
+          .and_return(input)
+
         expect($stderr)
           .not_to receive(:puts)
         expect($stdout)
           .not_to receive(:puts)
 
         expect {
-          described_class.functional_output(transformer)
+          described_class.functional_input(transformer)
         }.to raise_error(described_class::ContractViolation)
       end
     end

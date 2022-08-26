@@ -6,8 +6,8 @@ module L42
 
     class ContractViolation < RuntimeError; end
 
-    def interact(interactor)
-      case interactor.($stdin.readlines(chomp: true))
+    def interact(interactor, *args, **kwds)
+      case interactor.($stdin.readlines(chomp: true), *args, **kwds)
       in [:stdout, output]
         $stdout.puts(output)
       in [:stderr, output]
