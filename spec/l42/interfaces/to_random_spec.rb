@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe L42::Interfaces::ToRandom do
-  context "moves a file to a directory with ts and tags" do
-    let(:files) { %w[a.one two.b.c three] }
-    let(:doubles) { files.map { double(_1) } }
+  let(:files) { %w[a.one two.b.c three] }
+  let(:doubles) { files.map { double(_1) } }
 
+  context "moves a file to a directory with ts and tags" do
     let :expected_result do
       files.zip(doubles).map do |file, double|
         "mv #{file.inspect} #{double}#{File.extname(file)}"
@@ -19,6 +19,9 @@ RSpec.describe L42::Interfaces::ToRandom do
 
       expect(result).to eq(expected_result)
     end
+  end
+
+  context "" do
   end
 end
 # SPDX-License-Identifier: Apache-2.0
