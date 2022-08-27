@@ -30,8 +30,10 @@ module L42
       end
     end
 
-    def functional_input(transformer, *args)
-      case transformer.($stdin.readlines(chomp: true), *args)
+    def functional_input(transformer, *args, use_params: nil)
+      input =
+        use_params || $stdin.readlines(chomp: true)
+      case transformer.(input, *args)
       in [:stdout, output]
         output
       in [:stderr, output]

@@ -5,7 +5,7 @@ RSpec.describe L42::Monad do
     let(:input) { (1..3).to_a.map(&:to_s) }
 
     context "ok result" do
-      let(:transformer) { ->(lines, base) { [:stdout, lines.inject(base){ |b, l| b + l.to_i} ] } }
+      let(:transformer) { ->(lines, base) { [:stdout, lines.inject(base){ |b, l| b + l.to_i }] } }
       it "computes on input" do
         expect($stdin)
           .to receive(:readlines).with(chomp: true)
@@ -15,9 +15,21 @@ RSpec.describe L42::Monad do
       end
     end
 
+    context "from params" do
+      let(:transformer) { ->(lines, base) { [:stdout, lines.inject(base){ |b, l| b + l.to_i }] } }
+      it "computes on params" do
+        expect($stdin)
+          .not_to receive(:readlines)
+
+        expect(described_class.functional_input(transformer, 10, use_params: %w[20 30])).to eq(60)
+      end
+
+    end
+
+
     context "error result" do
       let(:message) { random_string("error") }
-      let(:transformer) { ->(_) { [:stderr, message] }}
+      let(:transformer) { ->(_) { [:stderr, message] } }
       it "will exit" do
         expect($stdin)
           .to receive(:readlines).with(chomp: true)

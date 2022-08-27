@@ -234,6 +234,9 @@ Style/RescueModifier:
 Style/StabbyLambdaParentheses:
   Enabled: false
 
+Style/StderrPuts:
+  Enabled: false
+
 Style/StringLiterals:
   Enabled: false
 
