@@ -1,7 +1,7 @@
 [![CI](https://github.com/robertdober/l42_my_ruby/workflows/CI/badge.svg)](https://github.com/robertdober/l42_my_ruby/actions)
-[![Coverage Status](https://coveralls.io/repos/github/RobertDober/l42_my_ruby/badge.svg?branch=main)](https://coveralls.io/github/RobertDober/l42_my_ruby?branch=main)
-[![Gem Version](http://img.shields.io/gem/v/l42.svg)](https://rubygems.org/gems/l42_my_ruby)
-[![Gem Downloads](https://img.shields.io/gem/dt/l42.svg)](https://rubygems.org/gems/l42_my_ruby)
+[![Coverage Status](https://coveralls.io/repos/github/RobertDober/l42_my_ruby/badge.svg?branch=master)](https://coveralls.io/github/RobertDober/l42_my_ruby?branch=master)
+[![Gem Version](https://badge.fury.io/rb/l42_my_ruby.svg)](http://badge.fury.io/rb/l42_my_ruby)
+[![Gem Downloads](https://img.shields.io/gem/dt/l42_my_ruby.svg)](https://rubygems.org/gems/l42_my_ruby)
 
 # L42MyRuby
 

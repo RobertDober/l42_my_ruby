@@ -5,7 +5,7 @@ require_relative '../lib/l42'
 
 output =
   L42::Monad
-  .functional_input_or_args(L42::Interfaces::TxSend, ARGV.first, use_params: ARGV.drop(1))
+  .functional_input(L42::Interfaces::TxSend, ARGV.first, use_params: ARGV.drop(1))
 output&.each do |line|
   system(line)
 end
