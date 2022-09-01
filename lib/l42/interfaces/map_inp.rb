@@ -13,62 +13,10 @@ module L42
         parser.parse(args) => options, positionals, _
 
         if options.r
-          _run_with_rgx(input, positionals.first, options)
+          RgxFilter.run(input, positionals.first, options)
         else
-          _run_with_patterns(input, positionals.first)
+          PatternMapper.run(input, positionals.first, options)
         end
-      end
-
-      private
-
-      Count    = %r{(?<!%)%c}
-      FormattedCount = %r{(?<!%)%f(\d+)}
-      Now      = %r{(?<!%)%x}
-      Replacer = %r{(?<!%)%(?!%)}
-
-      def _map(pattern)
-        ->(record, idx) do
-          _transform_inp(pattern, record, idx)
-        end
-      end
-
-      def _match_and_patterns(rgx, options)
-        ->record do
-          if match = rgx.match(record)
-            match.to_a => _, *captures
-            [record, *captures].join(options.to_h.fetch(:sep, " "))
-          end
-        end
-      end
-
-      def _run_with_patterns(input, pattern)
-        pattern = pattern.gsub(Now, Time.now.to_i.to_s(16))
-        [
-          :stdout,
-          input.each_with_index.map(&_map(pattern))
-        ]
-      end
-
-      def _run_with_rgx(input, rgx_str, options)
-        rgx = Regexp.compile(rgx_str)
-        [
-          :stdout,
-          input.filter_map(&_match_and_patterns(rgx, options))
-        ]
-      end
-
-      def _replace_formatted(idx)
-        ->match_str do
-          "%0#{match_str[2..]}d" % idx
-        end
-      end
-
-      def _transform_inp(pattern, record, idx)
-        pattern
-          .gsub(Count, idx.to_s)
-          .gsub(FormattedCount, &_replace_formatted(idx))
-          .gsub(Replacer, record)
-          .gsub("%%", "%")
       end
     end
   end
