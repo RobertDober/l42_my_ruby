@@ -3,6 +3,5 @@
 
 require_relative '../lib/l42'
 
-options = L42::Interfaces::MapInp::Options.parse(ARGV)
-L42::Monad.interact(L42::Interfaces::MapInp, options, *ARGV)
+L42::Monad.interact(L42::Interfaces::MapInp, *ARGV)
 # SPDX-License-Identifier: Apache-2.0
