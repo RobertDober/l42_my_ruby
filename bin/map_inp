@@ -1,7 +1,29 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+raise "this is a cl script, it must no be required" unless __FILE__ == $PROGRAM_NAME
+
 require_relative '../lib/l42'
 
-L42::Monad.interact(L42::Interfaces::MapInp, *ARGV)
+module Main
+  extend self
+  include L42::Parser
+  def run(args)
+    parse(args) => options, positionals
+    if options.h
+      _help
+    elsif options.help
+      _help
+    else
+    Monad.interact(L42::Interfaces::MapInp, *positionals, **options.to_h)
+    end
+  end
+
+  private
+  def _help
+    raise "Not yet implemented"
+  end
+end
+
+Main.run(ARGV)
 # SPDX-License-Identifier: Apache-2.0

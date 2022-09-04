@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+
+
+require 'lab42/monad'
+Monad = Lab42::Monad
+
 require "zeitwerk"
 loader = Zeitwerk::Loader.for_gem
 loader.setup # ready!

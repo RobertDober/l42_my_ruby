@@ -24,5 +24,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 3.1.0'
 
-  s.add_dependency 'lab42_rgxargs', '~> 0.2.2'
+  s.add_dependency 'ansi256', '~> 0.3.0'
+  s.add_dependency 'lab42_monad', '~> 0.1.2'
+  s.add_dependency 'lab42_rgxargs', '~> 0.2.4'
 end

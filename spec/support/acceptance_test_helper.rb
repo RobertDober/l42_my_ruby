@@ -10,9 +10,14 @@ module Support
       File.join(File.dirname(__dir__), "fixtures", *segments)
     end
 
-    def run_binary(name, *args, input:)
-      %x(./bin/#{name} #{args.join(" ")} < spec/fixtures/#{input})
-        .split("\n")
+    def run_binary(name, *args, input: nil)
+      if input
+        %x(./bin/#{name} #{args.join(" ")} < spec/fixtures/#{input})
+          .split("\n")
+      else
+        %x(./bin/#{name} #{args.join(" ")})
+          .split("\n")
+      end
     end
   end
 end

@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 RSpec.describe "bin/map_inp", type: :acceptance_test do
+  context "help" do
+    it "writes the correct information to stdout" do
+      output = run_binary("map_inp", "-h")
+      p output
+      expect(output).to eq(fixture_content(input_file))
+
+    end
+  end
+
   context "with pattern" do
     it 'copies the input' do
       input_file = "alpha_beta.txt"

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+raise RuntimeError, "must not require this file" unless $PROGRAM_NAME == __FILE__
+
+require_relative '../lib/l42'
+
+L42::Monad.functional_output(L42::Interfaces::ShowColors, *ARGV)
+# SPDX-License-Identifier: Apache-2.0

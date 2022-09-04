@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
 require 'securerandom'
-require 'lab42/rgxargs'
 
 module L42
   module Interfaces
     module MapInp
       extend self
 
-      def call(input, *args)
-        parser = Lab42::Rgxargs.new(posix: true)
-        parser.parse(args) => options, positionals, _
-
+      def call(input, *args, **options)
         if options.r
           RgxFilter.run(input, positionals.first, options)
         else

@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+raise RuntimeError, "must not require this file" unless $PROGRAM_NAME == __FILE__
+
+require_relative '../lib/l42/tools/colorize'
+
+C = L42::Tools::Colorize
+
+module Main
+  extend self
+
+  def run
+    puts(<<~ENDOFMESSAGE)
+    This is #{C.color("L42MyRuby", fg: :magenta)} a collection of Command Line tools written in Ruby
+
+    They are:
+
+      - #{C.color("map_inp", fg: 245)}       ... a mixture between `grep` and `sed`
+      - #{C.color("mv_pfx_by_now", fg: 245)} ... reads filenames from stdin and creates mv commands with a prefixed timestamp
+      - #{C.color("mv_to_random", fg: 245)}  ... reads filenames from stdin and creates mv commands with a random name but the same extension
+      - #{C.color("mv_with_ts", fg: 245)}    ... takes a filename a destination and a list of tags to create searchable filenames with a hex timestamp 
+      - #{C.color("show_colors", fg: 245)}   ... allows to check the output of your available screen colors
+      - #{C.color("tx_send", fg: 245)}       ... takes a tmux window and reads text to be sent to this window (from args or stdin), eventually switches to the window
+
+    For each of this calling the script with #{C.color("`-h|--help`", fg: :magenta)} gives a detailed description
+    ENDOFMESSAGE
+  end
+end
+
+Main.run
+
+# SPDX-License-Identifier: Apache-2.0
