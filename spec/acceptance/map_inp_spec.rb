@@ -28,7 +28,7 @@ RSpec.describe "bin/map_inp", type: :acceptance_test do
 
     it "can also output capture groups" do
       output = run_binary("map_inp", "-r", "'Line-(\\d)-(.*)'", input: input_file)
-      expected_output= [
+      expected_output = [
         "Line-1-one 1 one",
         "Line-2-two 2 two",
         "Line-3-three 3 three"
@@ -38,7 +38,7 @@ RSpec.describe "bin/map_inp", type: :acceptance_test do
 
     it "can prepare the output for machine parsing with the \u0000 seperator" do
       output = run_binary("map_inp", "-r0", "'Line-(\\d)-(.*)'", input: input_file)
-      expected_output= [
+      expected_output = [
         "Line-1-one\u00001\u0000one",
         "Line-2-two\u00002\u0000two",
         "Line-3-three\u00003\u0000three"
