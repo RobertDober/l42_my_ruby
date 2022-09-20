@@ -4,7 +4,7 @@ require 'lab42/rgxargs'
 module L42
   module Parser
     def parse(args)
-      parser = Lab42::Rgxargs.new(open_struct: false, posix: true)
+      parser = Lab42::Rgxargs.new(posix: true)
       case parser.parse(args)
       in options, positionals, []
         [options, positionals]

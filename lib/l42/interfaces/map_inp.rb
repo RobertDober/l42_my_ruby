@@ -8,10 +8,10 @@ module L42
       extend self
 
       def call(input, *args, **options)
-        if options.r
-          RgxFilter.run(input, positionals.first, options)
+        if options[:r]
+          RgxFilter.run(input, args.first, options)
         else
-          PatternMapper.run(input, positionals.first, options)
+          PatternMapper.run(input, args.first, options)
         end
       end
     end

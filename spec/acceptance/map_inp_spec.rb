@@ -6,7 +6,6 @@ RSpec.describe "bin/map_inp", type: :acceptance_test do
       output = run_binary("map_inp", "-h")
       p output
       expect(output).to eq(fixture_content(input_file))
-
     end
   end
 
