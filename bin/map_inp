@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-raise "this is a cl script, it must no be required" unless __FILE__ == $PROGRAM_NAME
+raise 'this is a cl script, it must no be required' unless __FILE__ == $PROGRAM_NAME
 
 require_relative '../lib/l42'
 
@@ -10,18 +10,17 @@ module Main
   include L42::Parser
   def run(args)
     parse(args) => options, positionals
-    if options.h
-      _help
-    elsif options.help
+    if options.h || options.help
       _help
     else
-    Monad.interact(L42::Interfaces::MapInp, *positionals, **options.to_h)
+      Monad.interact(L42::Interfaces::MapInp, *positionals, **options.to_h)
     end
   end
 
   private
+
   def _help
-    raise "Not yet implemented"
+    puts L42::Interfaces::MapInp::Help.help
   end
 end
 

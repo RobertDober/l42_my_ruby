@@ -19,6 +19,7 @@ module L42
         private
 
         Count    = %r{(?<!%)%c}
+        Extension = %r{(?<!%>)%X}
         FieldId  = %r{(?<!%)%(\d+)}
         FormattedCount = %r{(?<!%)%f(\d+)}
         Now      = %r{(?<!%)%x}
@@ -40,6 +41,10 @@ module L42
           end
         end
 
+        def _extension(record)
+          File.extname(record)
+        end
+
         def _replace_formatted(idx)
           ->match_str do
             "%0#{match_str[2..]}d" % idx
@@ -57,6 +62,7 @@ module L42
         def _transform_plain(pattern, record, idx)
           pattern
             .gsub(Count, idx.to_s)
+            .gsub(Extension, _extension(record))
             .gsub(FormattedCount, &_replace_formatted(idx))
             .gsub(Replacer, record)
             .gsub("%%", "%")
@@ -66,6 +72,7 @@ module L42
           fields = record.split(options[:sep]||%r{\s+}, options[:max_field].succ)
           output = pattern
             .gsub(Count, idx.to_s)
+            .gsub(Extension, _extension(record))
             .gsub(FormattedCount, &_replace_formatted(idx))
 
           output = (0...options[:max_field]).inject(output) do |out, field_nb|

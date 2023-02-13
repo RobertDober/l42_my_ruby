@@ -7,3 +7,10 @@
 
 Occupying the `L42` namespace this gem provides tools and binaries useful to me (lab42) and
 maybe to others?
+
+## LICENSE
+
+Copyright 2022 Robert Dober robert.dober@gmail.com
+
+Apache-2.0 [c.f LICENSE](LICENSE)
+<!-- SPDX-License-Identifier: Apache-2.0 -->

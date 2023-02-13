@@ -7,15 +7,15 @@ module Support
     end
 
     def fixture_path(*segments)
-      File.join(File.dirname(__dir__), "fixtures", *segments)
+      File.join(File.dirname(__dir__), 'fixtures', *segments)
     end
 
     def run_binary(name, *args, input: nil)
       if input
-        %x(./bin/#{name} #{args.join(" ")} < spec/fixtures/#{input})
+        `./bin/#{name} #{args.join(' ')} < spec/fixtures/#{input}`
           .split("\n")
       else
-        %x(./bin/#{name} #{args.join(" ")})
+        `./bin/#{name} #{args.join(' ')}`
           .split("\n")
       end
     end
