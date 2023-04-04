@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../lib/l42'
+
+output =
+  L42::Monad
+  .functional_input(L42::Interfaces::TxSendFile, ARGV.first, use_params: ARGV.drop(1))
+output&.each do |line|
+  system(line)
+end
+# SPDX-License-Identifier: Apache-2.0
